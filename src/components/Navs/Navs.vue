@@ -12,7 +12,11 @@
         </mt-swipe>
         <index-list></index-list>
       </div>
-      <div v-else>2</div>
+      <div v-else>
+        33
+      </div>
+      <span>{{count}}</span>
+      <button type="button" @click="add" style="width: 20px;">+</button>
     </div>
   </div>
 </template>
@@ -20,6 +24,7 @@
 <script>
 import { Swipe, SwipeItem } from 'mint-ui'
 import IndexList from '@/components/IndexList/IndexList'
+import {mapState} from 'vuex'
 export default {
   components: {
     Swipe,
@@ -36,7 +41,13 @@ export default {
   methods: {
     tabsNav (index) {
       this.isCurr = index
+    },
+    add () {
+      this.$store.commit('increment')
     }
+  },
+  computed: {
+    ...mapState(['count'])
   }
 }
 </script>
